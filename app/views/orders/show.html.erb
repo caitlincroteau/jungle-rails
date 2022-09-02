@@ -22,8 +22,8 @@
         </tr>
       </thead>
       <tbody>
-        <% enhanced_cart.each do |line_item| %>
-          <%= render 'line_item', product: line_item[:product], quantity: line_item[:quantity].to_i %>
+        <% @order.line_items.each do |line_item| %>
+          <%= render 'line_item', product: line_item.product, quantity: line_item[:quantity].to_i %>
         <% end %>
       </tbody>
       <tfoot>
