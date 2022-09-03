@@ -111,3 +111,10 @@ form.button_to {
 .text-danger {
   color: #f38792 !important;
 }
+
+.footer-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
