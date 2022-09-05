@@ -45,7 +45,7 @@
           <%# </ul>
         </li> %>
       </ul>
-      <ul class="navbar-nav">
+      <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle text-danger"
@@ -68,21 +68,20 @@
         </li>
 
         <% if current_user %>
-          <li class="navbar-text"> 
-            Signed in as <%= current_user.name %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Logout", logout_path, class: "nav-link" %>
-          </li>
+        <li class="nav-item nav-link disabled"> 
+          Signed in as <%= current_user.name %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Logout", logout_path, class: "nav-link" %>
+        </li>
         <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", login_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Signup", signup_path, class: "nav-link" %>
-          <% end %>
-          </li>
-
+        <li class="nav-item">
+          <%= link_to "Login", login_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Signup", signup_path, class: "nav-link" %>
+        <% end %>
+        </li>
       </ul>
     </div>
   </div>
