@@ -39,14 +39,14 @@ RSpec.describe User, type: :model do
       puts "look into how to test this."
     end
 
+    it 'should have a minimun password length' do
+      @user = User.new(name: 'Caitlin C.', email: 'lol@aol.com', password: "We", password_confirmation: "We")
+      @user.save
+      expect(@user.errors.full_messages).to include('Password is too short (minimum is 5 characters)')
+    end
+
   end
 
 end
 
 
-# it 'should have a minimun password length' do
-#   @user = User.new(name: 'Caitlin C.', email: 'lol@aol.com', password: "We", password_confirmation: "We")
-#   @user.save
-#   expect(@user).to_not be_valid
-#   puts @user.errors.full_messages
-# end
