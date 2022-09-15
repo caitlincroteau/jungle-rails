@@ -35,8 +35,12 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Email can't be blank")
     end
 
-    xit 'should provide an error message if email is not unique' do
-      puts "look into how to test this."
+    it 'should provide an error message if email is not unique' do
+      @user_1 = User.new(name: 'Caitlin C.', email: 'lol@aol.com', password: "12345hello", password_confirmation: "12345hello")
+      @user_1.save
+      @user_2 = User.new(name: 'Violet R.', email: 'lol@aol.com', password: "sails567", password_confirmation: "sails567")
+      @user_2.save
+      expect(@user_2.errors.full_messages).to include("Email has already been taken")
     end
 
     it 'should have a minimun password length' do
@@ -47,6 +51,17 @@ RSpec.describe User, type: :model do
 
   end
 
-end
+  # describe '.authenticate_with_credentials' do
+  #   it 'should only log-in user with valid credentials'
+  #   @user = User.new(name: 'Caitlin C.', email: 'lol@aol.com', password: "12345hello", password_confirmation: "12345hello")
+  #   @user.save
+  
+  #   end
+
+
+#   end
+
+
+ end
 
 
