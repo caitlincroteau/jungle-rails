@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe 'Validation' do
+
     it 'should save user when all required fields are set correctly' do
-      @user = User.new(name: 'Caitlin C.', email: 'lol@aol.com', password: "12345hello", password_confirmation: "12345hello")
+      @user = User.new(name: 'Caitlin C.', email: 'hello@aol.com', password: "12345hello", password_confirmation: "12345hello")
       expect(@user).to be_valid
     end
 
@@ -51,17 +52,30 @@ RSpec.describe User, type: :model do
 
   end
 
-  # describe '.authenticate_with_credentials' do
-  #   it 'should only log-in user with valid credentials'
-  #   @user = User.new(name: 'Caitlin C.', email: 'lol@aol.com', password: "12345hello", password_confirmation: "12345hello")
-  #   @user.save
-  
-  #   end
+  describe '.authenticate_with_credentials' do
+    
+    it 'should only log-in user with valid credentials' do
+      @user = User.new(name: 'Caitlin C.', email: 'good@aol.com', password: "12345hello", password_confirmation: "12345hello")
+      @user.save
+      @user_logged_in = User.authenticate_with_credentials('good@aol.com', "12345hello")
+      expect(@user_logged_in).to_not eq(nil)
+    end
 
+    it 'should authenticate user if email contains trailing spaces' do
+      @user = User.new(name: 'Caitlin C.', email: 'good@aol.com', password: "12345hello", password_confirmation: "12345hello")
+      @user.save
+      @user_logged_in = User.authenticate_with_credentials(' good@aol.com ', "12345hello")
+      expect(@user_logged_in).to_not eq(nil)
+    end
 
-#   end
+    it 'should authenticate user if email in the wrong case' do
+      @user = User.new(name: 'Caitlin C.', email: 'WHAT@aol.com', password: "12345hello", password_confirmation: "12345hello")
+      @user.save
+      @user_logged_in = User.authenticate_with_credentials('what@aol.com', "12345hello")
+      expect(@user_logged_in).to_not eq(nil)
+    end
+  end
 
-
- end
+end
 
 
